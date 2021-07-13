@@ -21,12 +21,11 @@ class RepositoryViewController: UIViewController {
     @IBOutlet weak var lastUpdateLabel: UILabel!
     
     
-    var indexPath : Int?
+    
     var repoName : String?
     var repoDescription : String?
     var stars : Int?
     var update : String?
-    
     var ownerName : String?
     var ownerAvatar : String?
     var ownerProfile : String?
@@ -48,7 +47,7 @@ class RepositoryViewController: UIViewController {
             starsLabel.text = String(score)
         }
         if let lastUpdate = update{
-            lastUpdateLabel.text = lastUpdate
+            lastUpdateLabel.text = dateFormatter(date: lastUpdate)
         }
         if let oName = ownerName{
             ownerNameLabel.text = oName
@@ -67,13 +66,21 @@ class RepositoryViewController: UIViewController {
             forksLabel.text = String(forks)
         }
         if let created = createdAt{
-            createdAtLabel.text = created
+            createdAtLabel.text = dateFormatter(date: created)
+            
         }
         
-        if let index = indexPath{
-            print(index)
-        }
-        // Do any additional setup after loading the view.
+    }
+    
+    //MARK: Functions
+    func dateFormatter(date : String) -> String{
+        let dateFormatter = ISO8601DateFormatter()
+        let formattedDate = dateFormatter.date(from:date)!
+        
+        let df = DateFormatter()
+        df.dateFormat = "yyyy-MM-dd"
+        let newDate = df.string(from: formattedDate)
+        return newDate
     }
     
     func getData(from url: URL, completion: @escaping (Data?, URLResponse?, Error?) -> ()) {
@@ -81,27 +88,14 @@ class RepositoryViewController: UIViewController {
     }
     
     func downloadImage(from url: URL) {
-        print("Download Started")
         getData(from: url) { data, response, error in
             guard let data = data, error == nil else { return }
-            print(response?.suggestedFilename ?? url.lastPathComponent)
-            print("Download Finished")
-            // always update the UI from the main thread
             DispatchQueue.main.async() { [weak self] in
                 self?.avatarImageView.image = UIImage(data: data)
             }
         }
     }
-    
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }
+
+

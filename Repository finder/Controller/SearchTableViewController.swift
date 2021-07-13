@@ -32,12 +32,6 @@ class SearchTableViewController: UITableViewController {
         if let search = searchText{
             repositoryManager.fetchURL(key: search)
         }
-        
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem
     }
     
     //MARK: Custom TableView
@@ -54,6 +48,17 @@ class SearchTableViewController: UITableViewController {
         alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
         
         self.present(alert, animated: true)
+    }
+    
+    //MARK: Date
+    func dateFormatter(date : String) -> String{
+        let dateFormatter = ISO8601DateFormatter()
+        let formattedDate = dateFormatter.date(from:date)!
+        
+        let df = DateFormatter()
+        df.dateFormat = "yyyy-MM-dd"
+        let newDate = df.string(from: formattedDate)
+        return newDate
     }
 
     // MARK: - Table view data source
@@ -72,12 +77,10 @@ class SearchTableViewController: UITableViewController {
             cell.nameLabel.text = repoArray[indexPath.row].repoName
             cell.descriptionLabel.text = repoArray[indexPath.row].repoDescription
             cell.starsLabel.text = String(repoArray[indexPath.row].stars) + " Stars"
-            cell.updateLabel.text = repoArray[indexPath.row].update
+            cell.updateLabel.text = "Last update: " + dateFormatter(date: repoArray[indexPath.row].update)
 
             return cell
         }
-
-        // Configure the cell...
 
         return UITableViewCell()
     }
@@ -89,7 +92,6 @@ class SearchTableViewController: UITableViewController {
         let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
         let newViewController = storyBoard.instantiateViewController(withIdentifier: "RepositoryStoryboard") as! RepositoryViewController
         
-        newViewController.indexPath = indexPath.row
         newViewController.repoName = repoArray[indexPath.row].repoName
         newViewController.repoDescription = repoArray[indexPath.row].repoDescription
         newViewController.stars = repoArray[indexPath.row].stars
@@ -118,18 +120,6 @@ class SearchTableViewController: UITableViewController {
         
         
     }
-    
-    
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
     
     
 }

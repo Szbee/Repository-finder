@@ -13,20 +13,20 @@ struct RepositoryData : Decodable{
 }
 
 struct Items : Decodable {
-    let name : String? //repo név
-    let description : String? //repo leírás
-    let score : Double? //csillagok
-    let stargazers_count : Int? //csillagok száma
-    let updated_at : String? //frissítés
+    let name : String? 
+    let description : String?
+    let score : Double?
+    let stargazers_count : Int?
+    let updated_at : String?
     
     let owner : Owner
-    let html_url : String? //repo url
-    let forks_count : Int? //forkok száma
-    let created_at  : String? //létrehozás dátuma
+    let html_url : String?
+    let forks_count : Int?
+    let created_at  : String?
 }
 
 struct Owner : Decodable {
-    let login : String? //owner neve
-    let avatar_url : String? //avatar képe
-    let html_url : String? //github profil link
+    let login : String?
+    let avatar_url : String?
+    let html_url : String?
 }

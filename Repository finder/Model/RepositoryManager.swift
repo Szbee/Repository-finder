@@ -71,9 +71,6 @@ struct RepositoryManager {
                 
             }
             
-           
-//            print(repoArray)
-            
             return repoArray
         } catch  {
             print(error)
