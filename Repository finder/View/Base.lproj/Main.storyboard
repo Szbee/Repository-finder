@@ -17,38 +17,66 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Írd ide a kulcsszót a kereséshez" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="mgm-Uq-PWZ">
-                                <rect key="frame" x="20" y="327" width="335" height="34"/>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="2" translatesAutoresizingMaskIntoConstraints="NO" id="koM-zc-cAY">
+                                <rect key="frame" x="125" y="102" width="125" height="125"/>
+                            </imageView>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Tableview" borderStyle="roundedRect" placeholder="Írd ide a kulcsszót a kereséshez" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="mgm-Uq-PWZ">
+                                <rect key="frame" x="40" y="297" width="295" height="34"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wSW-qa-wpe" customClass="ButtonModel" customModule="Repository_finder" customModuleProvider="target">
-                                <rect key="frame" x="50" y="419" width="275" height="50"/>
+                                <rect key="frame" x="50" y="394" width="275" height="50"/>
                                 <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="19L-dZ-oKi"/>
                                     <constraint firstAttribute="height" constant="50" id="DxW-V1-7zm"/>
                                 </constraints>
                                 <state key="normal" title="Keresés"/>
+                                <variation key="widthClass=compact">
+                                    <mask key="constraints">
+                                        <exclude reference="DxW-V1-7zm"/>
+                                    </mask>
+                                </variation>
                                 <connections>
                                     <action selector="searchButtonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="6EK-6H-zk3"/>
                                 </connections>
                             </button>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="2" translatesAutoresizingMaskIntoConstraints="NO" id="koM-zc-cAY">
-                                <rect key="frame" x="67" y="112" width="240" height="125"/>
-                            </imageView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="wSW-qa-wpe" secondAttribute="bottom" constant="223" id="481-rb-Ii5"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="mgm-Uq-PWZ" secondAttribute="trailing" constant="40" id="5QI-uB-L6K"/>
                             <constraint firstItem="wSW-qa-wpe" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="50" id="7Hu-2Q-qgS"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="wSW-qa-wpe" secondAttribute="trailing" constant="50" id="9d6-NF-NOt"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="koM-zc-cAY" secondAttribute="trailing" constant="125" id="D7E-Jk-g27"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="mgm-Uq-PWZ" secondAttribute="trailing" constant="20" id="DhR-xN-kl2"/>
+                            <constraint firstItem="mgm-Uq-PWZ" firstAttribute="top" secondItem="koM-zc-cAY" secondAttribute="bottom" constant="70" id="JkN-lu-c8r"/>
+                            <constraint firstItem="koM-zc-cAY" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="58" id="UFD-YL-goN"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="koM-zc-cAY" secondAttribute="trailing" constant="68" id="bkR-re-yLb"/>
+                            <constraint firstItem="mgm-Uq-PWZ" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="40" id="ccs-Wb-CeX"/>
+                            <constraint firstItem="koM-zc-cAY" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="125" id="cz3-ya-8hb"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="wSW-qa-wpe" secondAttribute="bottom" constant="198" id="daM-MF-jqd"/>
                             <constraint firstItem="koM-zc-cAY" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="67" id="gM3-WS-7eD"/>
                             <constraint firstItem="mgm-Uq-PWZ" firstAttribute="top" secondItem="koM-zc-cAY" secondAttribute="bottom" constant="90" id="nZS-N8-IUE"/>
+                            <constraint firstItem="wSW-qa-wpe" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="50" id="oSu-JH-rr7"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="wSW-qa-wpe" secondAttribute="trailing" constant="50" id="sXk-UK-I4F"/>
                             <constraint firstItem="mgm-Uq-PWZ" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="uEv-DU-Rbk"/>
                             <constraint firstItem="koM-zc-cAY" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="68" id="xRv-EW-osJ"/>
                         </constraints>
+                        <variation key="widthClass=compact">
+                            <mask key="constraints">
+                                <exclude reference="9d6-NF-NOt"/>
+                                <exclude reference="DhR-xN-kl2"/>
+                                <exclude reference="bkR-re-yLb"/>
+                                <exclude reference="daM-MF-jqd"/>
+                                <exclude reference="gM3-WS-7eD"/>
+                                <exclude reference="xRv-EW-osJ"/>
+                                <exclude reference="nZS-N8-IUE"/>
+                                <exclude reference="uEv-DU-Rbk"/>
+                                <exclude reference="7Hu-2Q-qgS"/>
+                            </mask>
+                        </variation>
                     </view>
                     <navigationItem key="navigationItem" id="iih-xF-gzM"/>
                     <connections>
@@ -58,7 +86,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1047.2" y="113.79310344827587"/>
+            <point key="canvasLocation" x="1045.7271364317842" y="112.8"/>
         </scene>
         <!--Search Table View Controller-->
         <scene sceneID="Age-MK-H1G">

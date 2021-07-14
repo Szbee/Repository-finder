@@ -14,6 +14,10 @@ class SearchTableViewController: UITableViewController {
     var searchText : String?
     var selectedRepository : String?
     
+    let loadingView = UIView()
+    let spinner = UIActivityIndicatorView()
+    let loadingLabel = UILabel()
+    
     var repoArray : [RepositoryListModel] = []
 
     override func viewDidLoad() {
@@ -24,6 +28,7 @@ class SearchTableViewController: UITableViewController {
         self.tableView.delegate = self
         tableView.rowHeight = 150
         
+        setLoadingScreen()
         
         self.registerTableViewCells()
         
@@ -59,6 +64,39 @@ class SearchTableViewController: UITableViewController {
         df.dateFormat = "yyyy-MM-dd"
         let newDate = df.string(from: formattedDate)
         return newDate
+    }
+    
+    //MARK: Loading
+    private func setLoadingScreen() {
+        
+        let width: CGFloat = 120
+        let height: CGFloat = 30
+        let x = self.view.bounds.midX
+        let y = self.view.bounds.midY
+        loadingView.frame = CGRect(x: x, y: y, width: width, height: height)
+        
+        loadingLabel.textColor = .gray
+        loadingLabel.textAlignment = .center
+        loadingLabel.text = "Loading..."
+        loadingLabel.frame = CGRect(x: 130, y: 330, width: 140, height: 30)
+        
+        spinner.style = .gray
+        spinner.frame = CGRect(x: 130, y: 330, width: 30, height: 30)
+        spinner.startAnimating()
+        
+        loadingView.addSubview(spinner)
+        loadingView.addSubview(loadingLabel)
+        
+        tableView.addSubview(loadingView)
+        
+    }
+    
+    private func removeLoadingScreen() {
+        
+        spinner.stopAnimating()
+        spinner.isHidden = true
+        loadingLabel.isHidden = true
+        
     }
 
     // MARK: - Table view data source
@@ -127,16 +165,20 @@ class SearchTableViewController: UITableViewController {
 extension SearchTableViewController : RepositoryManagerDelegate {
     func didUpdate(_ repositoryManager: RepositoryManager, repositoryArray: [RepositoryListModel]) {
         
-        for i in 0..<repositoryArray.count {
+        DispatchQueue.main.async {
+            self.removeLoadingScreen()
+            for i in 0..<repositoryArray.count {
 
-            repoArray.append(repositoryArray[i])
-        }
+                self.repoArray.append(repositoryArray[i])
+            }
 
-        if repoArray.count == 0 {
-            showAlert(errorMessage: "Nincs a keresésnek megfelelő elem")
+            if self.repoArray.count == 0 {
+                self.showAlert(errorMessage: "Nincs a keresésnek megfelelő elem")
+            }
+            
+            self.tableView.reloadData()
         }
         
-        tableView.reloadData()
         
         
     }
